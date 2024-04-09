@@ -1,18 +1,27 @@
-
-const [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
 function isPrime(num) {
-    if (num < 2) {
+    if (num <= 1) {
+      return false;
+    }
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+      if (num % i === 0) {
         return false;
+      }
     }
-    for  ( let i = 2, sqrtNum - Math.sqrt(num); i <= sqrtNum; i++) {
-        if (num % i === 0) {
-            return false; //found a divisor, not prime
-        }
-    }
-    return true; //no divisor found, num is prime
-}
-
-function filterPrimes(array) {
-    return array.filter(isPrime);
-}
+    return true;
+  }
+  
+  function filterPrimeNumbers(arr) {
+    return arr.filter(num => isPrime(num));
+  }
+  
+  // Prompt for user input
+  const inputString = prompt('Enter numbers separated by commas (e.g., 1, 2, 3):');
+  const inputArray = inputString.split(',').map(num => parseInt(num.trim(), 10));
+  
+  // Check if input is valid
+  if (inputArray.some(isNaN)) {
+    console.log('Please enter valid numbers separated by commas.');
+  } else {
+    const primeNumbers = filterPrimeNumbers(inputArray);
+    console.log('Prime numbers:', primeNumbers);
+  }
