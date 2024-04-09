@@ -6,8 +6,10 @@ code challenge 2
 #### By *kish mwangi*
 
 ## Description
-It's a javasccript function that shows different types of functions.
+This repository contains JavaScript solutions to various coding challenges.
 
+## Project Setup
+Simply clone the repository and run the JavaScript files in a Node.js environment.
 ## Installation
 You use git clone to be able to download the documents in the GitHub
 
