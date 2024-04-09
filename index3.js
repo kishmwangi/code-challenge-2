@@ -1,27 +1,44 @@
-function isPrime(num) {
-    if (num <= 1) {
-      return false;
-    }
-    for (let i = 2; i <= Math.sqrt(num); i++) {
-      if (num % i === 0) {
-        return false;
-      }
-    }
-    return true;
-  }
-  
-  function filterPrimeNumbers(arr) {
-    return arr.filter(num => isPrime(num));
-  }
-  
-  // Prompt for user input
-  const inputString = prompt('Enter numbers separated by commas (e.g., 1, 2, 3):');
-  const inputArray = inputString.split(',').map(num => parseInt(num.trim(), 10));
-  
-  // Check if input is valid
-  if (inputArray.some(isNaN)) {
-    console.log('Please enter valid numbers separated by commas.');
-  } else {
-    const primeNumbers = filterPrimeNumbers(inputArray);
-    console.log('Prime numbers:', primeNumbers);
-  }
+const readline = require('readline');
+
+// Create interface to read input from user
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+// Function to generate range based on user input
+function generateRange() {
+    rl.question('Enter the start value: ', startInput => {
+        const start = parseInt(startInput);
+
+    rl.question('Enter the end value: ', endInput => {
+        const end = parseInt(endInput);
+        const result = range(start, end);
+        console.log('Generated range:', result);
+        rl.close();
+    });
+});
+}
+
+// Function to generate range
+function range(start, end) {
+    let array = [];
+    let increment;
+
+// Define the increment
+if (end >= start) {
+    increment = 1;
+} else {
+    increment = -1;
+}
+
+// Generate the array using a loop
+for (let i = start; end >= start ? i <= end : i >= end; i += increment) {
+    array.push(i);
+}
+
+return array;
+}
+
+// Call function to generate range
+generateRange();

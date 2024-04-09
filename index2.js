@@ -1,30 +1,43 @@
-//Generate Array Function
-function generateArray(start, end) {
-    let array = [];
-    
-    if (start <= end) {
-      for (let i = start; i <= end; i++) {
-        array.push(i);
-      }
-    } else {
-      for (let i = start; i >= end; i--) {
-        array.push(i);
-      }
-    }
-    
-    return array;
-  }
+	
+const readline = require('readline');
 
-// Prompt for user input
-const startNum = parseInt(prompt('Enter the start number:'));
-const endNum = parseInt(prompt('Enter the end number:'));
+// Create interface to read input from user
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
-// Check if both inputs are valid numbers
-if (!isNaN(startNum) && !isNaN(endNum)) {
-  const resultArray = generateArray(startNum, endNum);
-  console.log(resultArray);
-} else {
-  console.log('Please enter valid numbers.');
+// Function to filter prime numbers based on user input
+function filterPrimes() {
+    rl.question('Enter numbers separated by spaces: ', input => {
+        const numbers = input.split(' ').map(num => parseInt(num));
+        const primeNumbers = filterPrimeNumbers(numbers);
+        console.log('Prime numbers:', primeNumbers);
+        rl.close();
+    });
 }
 
-  
+// Function to check if a number is prime
+function checkPrime(number) {
+    if (number <= 1) {
+        return false; // Numbers less than or equal to 1 are not prime
+    }
+
+// Iterate from 2 up to n - 1 to check for divisors
+for (let i = 2; i < number; i++) {
+    if (number % i === 0) {
+        return false; // If the number is divisible by any number, it's not prime
+    }
+}
+
+return true; // If no divisor is found, the number is prime
+}
+
+// Function to filter prime numbers from an array of numbers
+function filterPrimeNumbers(numbers) {
+    // Filter only prime numbers
+    return numbers.filter(number => checkPrime(number));
+}
+
+// Call function to filter prime numbers
+filterPrimes();
